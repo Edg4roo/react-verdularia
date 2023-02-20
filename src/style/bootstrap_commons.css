@@ -1,0 +1,188 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url(fonts/Poppins-Medium.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url(fonts/Quicksand-Regular.ttf) format('truetype');
+}
+
+header {
+    z-index: 99999999;
+    width: 100%;
+    border-radius: 0 0 90% 90% / 30%;
+    background-color: #23201B;
+    height: fit-content;
+}
+
+main {
+    font-family: 'Quicksand', sans-serif;
+    color: #23201B;
+}
+
+body {
+    background-color: #CCCFD9;
+}
+
+.page_title {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.page_title h1 {
+    font-size: 3rem;
+    font-family: 'Ubuntu', sans-serif;
+    color: #23201B;
+}
+
+.header_icon {
+    width: 2rem;
+}
+
+.header_icon img {
+    width: 10rem;
+}
+
+header a.nav-link {
+    color:#A69B03;
+}
+
+header a.nav-link:hover {
+    color:#A69B03;
+}
+
+#phone_icon {
+    width: 3.5rem;
+}
+
+.ff_poppins {
+    font-family: 'Poppins';
+}
+
+.fc_pistachio {
+    color: #A69B03;
+}
+
+#dropdownMenuButton {
+    color: #A69B03;
+}
+
+.dropdown-menu {
+    background-color: #A69B03;
+    width: 12rem;
+}
+
+a.dropdown-item:hover {
+    background-color: #A69B03;
+}
+
+.dropdown-menu a {
+    color: white;
+}
+
+.dropdown-menu a:hover {
+    color: #23201B;
+}
+
+footer {
+    padding-top: 1rem;
+    width: 100%;
+    bottom: 0;
+    height: 100%;
+    display: block;
+    background-color: #23201B;
+    ;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    border-radius: 90% 90% 0 0 / 30%;
+}
+
+footer h4 {
+    color: #61460F;
+}
+
+footer p,
+ul li {
+    color: #A69B03;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: blue;
+}
+
+footer ul li a:visited {
+    color: orangered;
+}
+
+footer li {
+    list-style: none;
+}
+
+footer a>img {
+    width: 2rem;
+}
+
+.footer_logo {
+    width: 5rem;
+}
+
+.card-img-top {
+    width: 7rem;
+    padding: 1rem 0;
+}
+
+.btn-darkgreen {
+    background-color: #A69B03;
+    color: #23201B;
+}
+
+.btn-darkgreen:hover {
+    background-color: #61460f;
+    color: #A69B03;
+}
+
+.pagination li a {
+    font-family: 'Quicksand', sans-serif;
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    background-color: #23201B;
+    text-decoration: none;
+    border-radius: 50%;
+}
+
+.pagination li a:hover {
+    background-color: #A69B03;
+}
+
+.pagination li .active {
+    background-color: #A69B03;
+    font-weight: bold;
+}
+
+.list-group li {
+    background-color: #A69B03
+}
+
+.nav a {
+    color: white;
+}
+
+main li.list-group-item.active {
+    background-color: #61460f;
+    border: none;
+}
+
+main a.nav-link:hover {
+    color: #23201B;
+}
+
+.table th, table>tbody>tr>td{
+    padding: 0;
+}
+
+.card-body .img-thumbnail {
+    width: 6rem;
+}

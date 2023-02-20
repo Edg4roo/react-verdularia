@@ -1,45 +1,91 @@
 import React from 'react';
+import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '../style/bootstrap_commons.css'
+import 'popper.js';
 
 export default function Header() {
     return (
         <header>
-            <div className="container bg_darkbrown">
-                <div className="row">
-                    <div className="col-4 border border-dark justify-content-center d-flex align-items-center">
-                        <img src="/img/icons/icon.png" className="header_icon w-50" alt="" />
+            <div class="container bg_darkbrown">
+                <div class="row pb-5 pb-md-0 pt-2 pb-md-0">
+                    <div class="col-4 justify-content-start justify-content-md-center d-flex align-items-center">
+                        <div class="header_icon">
+                            <a href="index.html">
+                                <img src="img/icons/icon.png" class="d-none d-md-block" alt="" />
+                                <img src="img/icons/icon_no_text.png" id="phone_icon" class="d-block d-md-none" alt="" />
+                            </a>
+                        </div>
                     </div>
-                    <div className="col-4">
-                        <div className="d-flex h-100 align-items-center justify-content-center">
-                            <img src="/img/icons/search_icon.png" className="header_icon mx-2" alt="" />
+                    <div class="col-4 p-0">
+                        <div class="d-none d-md-flex h-100 align-items-center justify-content-center">
+                            <img src="/img/icons/search_icon.png" class="header_icon mx-2" alt="" />
                             <input type="text" name="" id="" />
                         </div>
                     </div>
-                    <div className="col-4">
-                        <div className="d-flex h-100 align-items-center justify-content-center ">
-                            <img src="/img/icons/user_icon.png" className="header_icon mx-2" alt="" />
-                            <img src="/img/icons/shooping_bag_icon.png" className="header_icon mx-2" alt="" />
+                    <div class="col-4">
+                        <div class="d-flex h-100 align-items-center justify-content-end justify-content-md-center">
+                            <div class="dropdown d-flex">
+                                <button class="dropdown-toggle btn p-0 m-0 d-flex position-relative" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="img/icons/phone_menu.png" class="header_icon" alt="" />
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="shop.html">Comprar</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">Conócenos</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="about_us.html">Sobre nosotros</a></li>
+                                            <li><a class="dropdown-item" href="how_we_work.html">Cómo trabajamos</a></li>
+                                            <li><a class="dropdown-item" href="members.html">Socios</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="dropdown-item" href="contact.html">Contacto</a></li>
+                                    <li><a class="dropdown-item" href="blog_recipes1.html">Blog</a></li>
+                                    <li><a class="dropdown-item" href="video1.html">Vídeos</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown d-flex align-items-center">
+                                <button class="dropdown-toggle btn ps-2 p-0 m-0 d-flex align-items-center" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="img/misc/user_thumbnail.jpg" class="header_icon rounded-circle" alt="" />
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="client_area.html ">Área de clientes</a></li>
+                                </ul>
+                            </div>
+                            <img src="/img/icons/shooping_bag_icon.png" class="header_icon mx-2" alt="" />
                         </div>
-
                     </div>
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="h-100 d-flex justify-content-center align-items-center">
-                                <ul className="nav nav-pills fs-4 ff_poppins ">
-                                    <li className="nav-item mx-4">
-                                        <a className="nav-link fc_pistachio" aria-current="page" href="#">Comprar</a>
+                    <div class="row d-none d-md-block">
+                        <div class="col-12">
+                            <div class="h-100 d-flex justify-content-center align-items-center">
+                                <ul class="nav nav-pills fs-4 ff_poppins ">
+                                    <li class="nav-item mx-4">
+                                        <a class="nav-link " aria-current="page" href="shop.html">Comprar</a>
                                     </li>
-                                    <li className="nav-item mx-4">
-                                        <a className="nav-link fc_pistachio" href="#">Conócenos</a>
+                                    <li class="nav-item mx-4 d-flex align-items-center">
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle text-decoration-none" type="button"
+                                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Conócenos
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <li><a class="dropdown-item" href="about_us.html">Sobre nosotros</a></li>
+                                                <li><a class="dropdown-item" href="how_we_work.html">Cómo trabajamos</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="members.html">Socios</a></li>
+                                            </ul>
+                                        </div>
                                     </li>
-                                    <li className="nav-item mx-4">
-                                        <a className="nav-link fc_pistachio" href="#">Contacto</a>
+                                    <li class="nav-item mx-4">
+                                        <a class="nav-link " href="contact.html">Contacto</a>
                                     </li>
-                                    <li className="nav-item mx-4">
-                                        <a className="nav-link fc_pistachio" href="#">Blog</a>
+                                    <li class="nav-item mx-4">
+                                        <a class="nav-link " href="blog_recipes1.html">Blog</a>
                                     </li>
-                                    <li className="nav-item mx-4">
-                                        <a className="nav-link fc_pistachio" href="#">Vídeos</a>
+                                    <li class="nav-item mx-4">
+                                        <a class="nav-link " href="v">Vídeos</a>
                                     </li>
                                 </ul>
                             </div>
