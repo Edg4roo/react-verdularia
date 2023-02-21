@@ -3,8 +3,10 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/bootstrap_commons.css'
 import 'popper.js';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
+    const navigate = useNavigate();
     return (
         <header>
             <div class="container bg_darkbrown">
@@ -28,30 +30,10 @@ export default function Header() {
                             <div class="dropdown d-flex">
                                 <button class="dropdown-toggle btn p-0 m-0 d-flex position-relative" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="img/icons/phone_menu.png" class="header_icon" alt="" />
+                                    <img src="img/icons/user_icon.png" class="header_icon" alt="" />
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="shop.html">Comprar</a></li>
-                                    <li class="dropdown-submenu">
-                                        <a class="dropdown-item dropdown-toggle" href="#">Conócenos</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="about_us.html">Sobre nosotros</a></li>
-                                            <li><a class="dropdown-item" href="how_we_work.html">Cómo trabajamos</a></li>
-                                            <li><a class="dropdown-item" href="members.html">Socios</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="dropdown-item" href="contact.html">Contacto</a></li>
-                                    <li><a class="dropdown-item" href="blog_recipes1.html">Blog</a></li>
-                                    <li><a class="dropdown-item" href="video1.html">Vídeos</a></li>
-                                </ul>
-                            </div>
-                            <div class="dropdown d-flex align-items-center">
-                                <button class="dropdown-toggle btn ps-2 p-0 m-0 d-flex align-items-center" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="img/misc/user_thumbnail.jpg" class="header_icon rounded-circle" alt="" />
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="client_area.html ">Área de clientes</a></li>
+                                    <li><a class="dropdown-item" href={navigate('/login')}>Iniciar sesión</a></li>
                                 </ul>
                             </div>
                             <img src="/img/icons/shooping_bag_icon.png" class="header_icon mx-2" alt="" />
