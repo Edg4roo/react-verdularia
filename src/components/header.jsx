@@ -3,10 +3,10 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/bootstrap_commons.css'
 import 'popper.js';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 export default function Header() {
-    const navigate = useNavigate();
     return (
         <header>
             <div class="container bg_darkbrown">
@@ -33,7 +33,7 @@ export default function Header() {
                                     <img src="img/icons/user_icon.png" class="header_icon" alt="" />
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href={navigate('/login')}>Iniciar sesión</a></li>
+                                    <li><Link class="dropdown-item" to='/login'>Iniciar sesión</Link></li>
                                 </ul>
                             </div>
                             <img src="/img/icons/shooping_bag_icon.png" class="header_icon mx-2" alt="" />
@@ -48,7 +48,7 @@ export default function Header() {
                                     </li>
                                     <li class="nav-item mx-4 d-flex align-items-center">
                                         <div class="dropdown">
-                                            <a class="dropdown-toggle text-decoration-none" type="button"
+                                            <a className="dropdown-toggle text-decoration-none" type="button"
                                                 id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                                 Conócenos
                                             </a>
