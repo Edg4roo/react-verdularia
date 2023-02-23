@@ -23,21 +23,26 @@ export default function NewProduct() {
 
     const [categories, setCategories] = useState([]);
 
+
     useEffect(() => {
-        fetch("http://api-verdularia/api/categories", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem('token')
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
+        async function fetchData() {
+            try {
+                const response = await fetch("http://api-verdularia/api/categories", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + localStorage.getItem('token')
+                    }
+                });
+                const data = await response.json();
                 setCategories(data['hydra:member']);
-            })
-            .catch(error => {
+                
+            } catch (error) {
                 console.error(error);
-            });
+            }
+        }
+        fetchData();
+        console.log(categories);
     }, []);
 
     const navigate = useNavigate();
@@ -148,12 +153,11 @@ export default function NewProduct() {
                 <div className="form-group">
                     <div className="row">
                         <div className="col">
-                            <label htmlFor="password">Categoría</label>
-                            <select>
-                                {categories.map((item) => (
-                                    <option value={item['@id']}>{item['@id']}</option>
+                            <label htmlFor="category">Categoría</label>
+                            <select name='category'>
+                                {categories.map(category => (
+                                    <option key={category['@id']} value={category['@id']}>{category.name}</option>
                                 ))}
-
                             </select>
                         </div>
                     </div>
