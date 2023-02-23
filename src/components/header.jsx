@@ -7,6 +7,16 @@ import { Link } from 'react-router-dom';
 
 
 export default function Header() {
+
+    function isAuthenticated() {
+        const token = localStorage.getItem('token');
+
+        if (token && token.length > 0) {
+            return true;
+        }
+        return false;
+    }
+
     return (
         <header>
             <div class="container bg_darkbrown">
@@ -27,6 +37,7 @@ export default function Header() {
                     </div>
                     <div class="col-4">
                         <div class="d-flex h-100 align-items-center justify-content-end justify-content-md-center">
+                            {isAuthenticated() && <h5 class="text-primary">asdasd</h5>}
                             <div class="dropdown d-flex">
                                 <button class="dropdown-toggle btn p-0 m-0 d-flex position-relative" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,6 +57,21 @@ export default function Header() {
                                     <li class="nav-item mx-4">
                                         <a class="nav-link " aria-current="page" href="shop.html">Comprar</a>
                                     </li>
+                                    {isAuthenticated() &&
+                                        <li class="nav-item mx-4 d-flex align-items-center">
+                                            <div class="dropdown">
+                                                <a className="dropdown-toggle text-decoration-none" type="button"
+                                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Gestiones
+                                                </a>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <li><Link class="dropdown-item" to='/new_product'>Nuevo producto</Link></li>
+                                                    <li><a class="dropdown-item" href="how_we_work.html">Cómo trabajamos</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="members.html">Socios</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>}
                                     <li class="nav-item mx-4 d-flex align-items-center">
                                         <div class="dropdown">
                                             <a className="dropdown-toggle text-decoration-none" type="button"

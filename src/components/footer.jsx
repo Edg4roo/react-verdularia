@@ -4,7 +4,7 @@ import '../style/bootstrap_commons.css'
 
 export default function Footer() {
   return (
-    <footer class="w-100 mb-0">
+    <footer class="w-100 mb-0 position-relative bottom-0">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-3 d-flex flex-column justify-content-center align-items-center">

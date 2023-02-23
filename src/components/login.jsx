@@ -2,27 +2,30 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
     const loginSchema = Yup.object().shape({
-        email: Yup.string().email('Email incorrecto').required('Campo obligatorio'),
+        username: Yup.string().required('Campo obligatorio'),
         password: Yup.string()
-        .min(6, 'La contraseña debe tener al menos 6 caracteres')
+        .min(3, 'La contraseña debe tener al menos 3 caracteres')
         .max(15,'La contraseña puede tener máximo 15 caracteres')
         .required('Campo obligatorio')
     })
 
+    const navigate = useNavigate();
+
     const formik = useFormik({
-        initialValues: {email:'', password:''},
+        initialValues: {username:'', password:''},
         onSubmit: (values) => {
         
             let data = {
-                email: values.email,
+                username: values.username,
                 password: values.password
             }
         
-            fetch('https://userprofile.serverred.es/api/login', {
+            fetch('https://api-verdularia.08edgar.daw.iesevalorpego.es/login', {
                 method: 'POST',
                 headers: {
                     'Content-type':'application/json',
@@ -34,7 +37,8 @@ export default function Login() {
                 if (response.error != null) {
                     console.log(data.error);
                 } else {
-                    console.log(response);
+                    localStorage.setItem('token',response.token);
+                    navigate('/');
                 }
             })
         }, 
@@ -46,19 +50,19 @@ export default function Login() {
             <h1>Login</h1>
             <form onSubmit={formik.handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="email">Correu electrònic</label>
+                    <label htmlFor="username">Username</label>
                     <input 
-                    type="email" 
+                    type="text" 
                     className="form-control" 
-                    name="email" 
-                    placeholder="Introduir email" 
+                    name="username" 
+                    placeholder="Introduir username" 
                     onChange={formik.handleChange} 
                     onBlur={formik.handleBlur} 
-                    value={formik.values.email}
+                    value={formik.values.username}
                     >
                     </input>
-                    {formik.touched.email && formik.errors.email ? 
-                        (<div className='text-danger'>{formik.errors.email}</div>):null            
+                    {formik.touched.username && formik.errors.username ? 
+                        (<div className='text-danger'>{formik.errors.username}</div>):null            
                     }
                 </div>
                 <div className="form-group">
