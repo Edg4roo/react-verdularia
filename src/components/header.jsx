@@ -55,7 +55,7 @@ export default function Header() {
                             <div class="h-100 d-flex justify-content-center align-items-center">
                                 <ul class="nav nav-pills fs-4 ff_poppins ">
                                     <li class="nav-item mx-4">
-                                        <a class="nav-link " aria-current="page" href="shop.html">Comprar</a>
+                                        <Link class="nav-link" to='/'>Comprar</Link>
                                     </li>
                                     {isAuthenticated() &&
                                         <li class="nav-item mx-4 d-flex align-items-center">

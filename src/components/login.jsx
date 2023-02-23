@@ -25,7 +25,7 @@ export default function Login() {
                 password: values.password
             }
         
-            fetch('https://api-verdularia.08edgar.daw.iesevalorpego.es/login', {
+            fetch('http://api-verdularia/login', {
                 method: 'POST',
                 headers: {
                     'Content-type':'application/json',
@@ -38,7 +38,7 @@ export default function Login() {
                     console.log(data.error);
                 } else {
                     localStorage.setItem('token',response.token);
-                    navigate('/');
+                    window.location = '/';
                 }
             })
         }, 
