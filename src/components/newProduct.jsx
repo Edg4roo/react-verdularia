@@ -4,7 +4,6 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
 export default function NewProduct() {
 
     const newProductSchema = Yup.object().shape({
@@ -17,8 +16,7 @@ export default function NewProduct() {
         quantity: Yup.number()
             .typeError('La cantidad debe ser un número')
             .required('La cantidad es obligatoria')
-            .min(1, 'La cantidad debe ser mayor o igual a 1'),
-        category: Yup.string().required('La categoría es obligatoria'),
+            .min(1, 'La cantidad debe ser mayor o igual a 1')
     })
 
     const [categories, setCategories] = useState([]);
@@ -36,45 +34,53 @@ export default function NewProduct() {
                 });
                 const data = await response.json();
                 setCategories(data['hydra:member']);
-                
             } catch (error) {
                 console.error(error);
             }
         }
         fetchData();
-        console.log(categories);
     }, []);
 
     const navigate = useNavigate();
 
+    const [selectedCategory, setSelectedCategory] = useState('');
+
+    const handleChange = event => {
+        setSelectedCategory(event.target.value);
+        console.log(selectedCategory)
+      };
+    
+
     const formik = useFormik({
         initialValues: { name: '', description: '', price: 0, quantity: 0, category: '' },
-        onSubmit: (values) => {
-
-            let data = {
-                username: values.username,
-                password: values.password
+        onSubmit: values => {
+            console.log(values)
+            const data = {
+                name: values.name,
+                description: values.description,
+                price: values.price,
+                quantity: values.quantity,
+                category: selectedCategory
             }
 
-            fetch('https://api-verdularia.08edgar.daw.iesevalorpego.es/login', {
+            console.log(data);
+
+            fetch('http://api-verdularia/api/products', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
+                    "Authorization": "Bearer " + localStorage.getItem('token')
                 },
                 body: JSON.stringify(data),
             })
                 .then(response => response.json())
                 .then(function (response) {
-                    if (response.error != null) {
-                        console.log(data.error);
-                    } else {
-                        localStorage.setItem('token', response.token);
-                        navigate('/');
-                    }
+                    console.log(response);
                 })
         },
         validationSchema: newProductSchema
     })
+
 
     return (
         <div className='contanier-fluid'>
@@ -154,7 +160,8 @@ export default function NewProduct() {
                     <div className="row">
                         <div className="col">
                             <label htmlFor="category">Categoría</label>
-                            <select name='category'>
+                            <select onChange={handleChange} value={selectedCategory} >
+                            <option className='disabled'>--Selecciona una categoría--</option>
                                 {categories.map(category => (
                                     <option key={category['@id']} value={category['@id']}>{category.name}</option>
                                 ))}
@@ -162,7 +169,7 @@ export default function NewProduct() {
                         </div>
                     </div>
                 </div>
-                <button type="submit" id="enviar" className="mt-2 btn btn-primary">Crear</button>
+                <button type="submit" className="mt-2 btn btn-primary">Crear</button>
             </form>
 
         </div>

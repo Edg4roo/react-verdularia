@@ -65,10 +65,8 @@ export default function Header() {
                                                     Gestiones
                                                 </a>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <li><Link class="dropdown-item" to='/list_products'>Todos los productos</Link></li>
                                                     <li><Link class="dropdown-item" to='/new_product'>Nuevo producto</Link></li>
-                                                    <li><a class="dropdown-item" href="how_we_work.html">Cómo trabajamos</a>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="members.html">Socios</a></li>
                                                 </ul>
                                             </div>
                                         </li>}
