@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import DeleteButton from './deleteButton';
-
+import EditButton from './editButton';
 
 export default function ListProducts() {
 
@@ -28,15 +28,20 @@ export default function ListProducts() {
                 "Authorization": "Bearer " + localStorage.getItem('token')
             },
         })
-            .then(response => response.json())
-            .then(function (response) {
-
-            })
-            const newProducts = products.filter(product => product['@id'] !== productId);
-            console.log(newProducts)
-            setProducts([...newProducts]);
+        const newProducts = products.filter((product) => product['@id'] !== productId);
+        setProducts(newProducts);
     }
 
+    const handleEdit = (productToUpdate) => {
+        const url = 'http://api-verdularia' + productToUpdate['@id'];
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json',
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
+        })
+      };
 
 
     return (
@@ -59,7 +64,7 @@ export default function ListProducts() {
                             <td>{product.category.name}</td>
                             <td>{product.price}</td>
                             <td>{product.quantity}</td>
-                            <td><DeleteButton product={product} onDelete={handleDelete} /></td>
+                            <td><DeleteButton product={product} onDelete={handleDelete} /> <EditButton product={product} onEdit={handleEdit} /></td>
                         </tr>
                     ))}
                 </tbody>
