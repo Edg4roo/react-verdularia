@@ -34,13 +34,29 @@ export default function ListProducts() {
 
     const handleEdit = (productToUpdate) => {
         const url = 'http://api-verdularia' + productToUpdate['@id'];
+        console.log(url);
+        console.log(productToUpdate);
+        const data = {
+            name: productToUpdate.name,
+            description: productToUpdate.description,
+            price: productToUpdate.price,
+            quantity: productToUpdate.quantity,
+        }
         fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json',
                 "Authorization": "Bearer " + localStorage.getItem('token')
             },
+            body: JSON.stringify(data),
         })
+
+        const objetoEncontrado = products.find(objeto => objeto['@id'] === productToUpdate['@id']);
+
+        if (objetoEncontrado) {
+          objetoEncontrado = productToUpdate
+          setProducts([...products]);
+        }
       };
 
 

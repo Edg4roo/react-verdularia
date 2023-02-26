@@ -10,7 +10,7 @@ export default function EditButton({ product, onEdit }) {
 
 
   const handleEdit = () => {
-    onEdit({ ...product, name: productName });
+    onEdit({ ...product, name: productName, description: productDescription, price: productPrice, quantity: productQuantity });
     setShowModal(false);
   };
 
@@ -35,12 +35,12 @@ export default function EditButton({ product, onEdit }) {
 
             <Form.Group controlId="formProductDescription">
               <Form.Label>Precio</Form.Label>
-              <Form.Control type="text" value={productPrice} onChange={(event) => setProductPrice(event.target.value)} />
+              <Form.Control type="number" value={productPrice} onChange={(event) => setProductPrice(event.target.value)} />
             </Form.Group>
 
             <Form.Group controlId="formProductDescription">
-              <Form.Label>Descripción del producto</Form.Label>
-              <Form.Control type="text" value={productQuantity} onChange={(event) => setProductQuantity(event.target.value)} />
+              <Form.Label>Cantidad</Form.Label>
+              <Form.Control type="number" value={productQuantity} onChange={(event) => setProductQuantity(event.target.value)} />
             </Form.Group>
           </Form>
         </Modal.Body>

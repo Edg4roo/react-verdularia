@@ -48,13 +48,12 @@ export default function NewProduct() {
     const handleChange = event => {
         setSelectedCategory(event.target.value);
         console.log(selectedCategory)
-      };
-    
+    };
+
 
     const formik = useFormik({
         initialValues: { name: '', description: '', price: 0, quantity: 0, category: '' },
         onSubmit: values => {
-            console.log(values)
             const data = {
                 name: values.name,
                 description: values.description,
@@ -161,7 +160,7 @@ export default function NewProduct() {
                         <div className="col">
                             <label htmlFor="category">Categoría</label>
                             <select onChange={handleChange} value={selectedCategory} >
-                            <option className='disabled'>--Selecciona una categoría--</option>
+                                <option className='disabled'>--Selecciona una categoría--</option>
                                 {categories.map(category => (
                                     <option key={category['@id']} value={category['@id']}>{category.name}</option>
                                 ))}
