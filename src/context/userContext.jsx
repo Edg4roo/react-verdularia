@@ -4,7 +4,7 @@ import { useState } from 'react';
 export const UserContext = createContext({});
 
 export default function UserContextProvider({ children }) {
-    const [isLogged, setIsLogged] = useState([]);
+    const [isLogged, setIsLogged] = useState(false);
 
 
     fetch("https://api-verdularia.08edgar.daw.iesevalorpego.es/api/categories", {
@@ -16,7 +16,11 @@ export default function UserContextProvider({ children }) {
     })
         .then(response => response.json())
         .then(function (response) {
-            setIsLogged(true);
+            if(response.code === undefined) {
+                setIsLogged(true);
+            } else {
+                setIsLogged(false);
+            }
         }
         )
 

@@ -1,23 +1,14 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/bootstrap_commons.css'
 import 'popper.js';
 import { Link } from 'react-router-dom';
-import {UserContext} from '../context/userContext';
+import { UserContext } from '../context/userContext';
 
 export default function Header() {
 
-    const user = useContext(UserContext) 
-
-    function isAuthenticated() {
-        const token = localStorage.getItem('token');
-
-        if (token && token.length > 0) {
-            return true;
-        }
-        return false;
-    }
+    const { isLogged } = useContext(UserContext);
 
     return (
         <header>
@@ -39,14 +30,17 @@ export default function Header() {
                     </div>
                     <div className="col-4">
                         <div className="d-flex h-100 align-items-center justify-content-end justify-content-md-center">
-                            {isAuthenticated() && <h5 className="text-primary">asdasd</h5>}
+                            {isLogged === true ? <h5 className="text-primary">nombre usuario</h5> : ''}
                             <div className="dropdown d-flex">
                                 <button className="dropdown-toggle btn p-0 m-0 d-flex position-relative" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="img/icons/user_icon.png" className="header_icon" alt="" />
                                 </button>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to='/login'>Iniciar sesión</Link></li>
+                                    {isLogged === false ?
+                                        <li><Link className="dropdown-item" to='/login'>Login</Link></li> :
+                                        <li><Link className="dropdown-item" to='/logout'>Salir</Link></li>
+                                    }
                                 </ul>
                             </div>
                             <img src="/img/icons/shooping_bag_icon.png" className="header_icon mx-2" alt="" />
@@ -59,19 +53,21 @@ export default function Header() {
                                     <li className="nav-item mx-4">
                                         <Link className="nav-link" to='/'>Comprar</Link>
                                     </li>
-                                    {isAuthenticated() &&
-                                        <li className="nav-item mx-4 d-flex align-items-center">
-                                            <div className="dropdown">
-                                                <a className="dropdown-toggle text-decoration-none" type="button"
-                                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Gestiones
-                                                </a>
+                                    {isLogged === true ?
+                                    <li className="nav-item mx-4 d-flex align-items-center">
+                                        <div className="dropdown">
+                                            <a className="dropdown-toggle text-decoration-none" type="button"
+                                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Gestiones
+                                            </a>
+                                            
                                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <li><Link className="dropdown-item" to='/list_products'>Todos los productos</Link></li>
                                                     <li><Link className="dropdown-item" to='/new_product'>Nuevo producto</Link></li>
-                                                </ul>
-                                            </div>
-                                        </li>}
+                                                </ul> 
+                                        </div>
+                                    </li>
+                                    :''}
                                     <li className="nav-item mx-4 d-flex align-items-center">
                                         <div className="dropdown">
                                             <a className="dropdown-toggle text-decoration-none" type="button"

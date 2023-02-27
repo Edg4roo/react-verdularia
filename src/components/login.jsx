@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {UserContext} from '../context/userContext';
 
 export default function Login() {
 
@@ -18,6 +19,8 @@ export default function Login() {
     })
 
     const navigate = useNavigate();
+
+    const userContext = useContext(UserContext);
 
     const formik = useFormik({
         initialValues: { username: '', password: '' },
@@ -39,6 +42,7 @@ export default function Login() {
                 .then(function (response) {
                     if (response.token != null) {
                         localStorage.setItem('token', response.token);
+                        userContext.setIsLogged(true);
                         navigate('/');
                     } else {
                         setError(response.message);
