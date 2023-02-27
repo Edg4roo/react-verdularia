@@ -7,7 +7,7 @@ export default function Home() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://api-verdularia/api/products')
+    fetch('https://api-verdularia.08edgar.daw.iesevalorpego.es/api/products')
       .then(response => response.json())
       .then(data => {
         setProducts(data['hydra:member']);
@@ -26,6 +26,7 @@ export default function Home() {
             <Card style={{ width: "18rem" }}>
               <Card.Body>
                 <Card.Title>{product.title}</Card.Title>
+                <Card.Text>{product.name}</Card.Text>
                 <Card.Text>{product.description}</Card.Text>
                 <Button variant="primary">Comprar</Button>
               </Card.Body>

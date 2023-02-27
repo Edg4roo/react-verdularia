@@ -8,8 +8,10 @@ export default function ListProducts() {
 
     const [products, setProducts] = useState([]);
 
+    const [error, setError] = useState(null);
+
     useEffect(() => {
-        fetch('http://api-verdularia/api/products')
+        fetch('https://api-verdularia.08edgar.daw.iesevalorpego.es/api/products')
             .then(response => response.json())
             .then(data => {
                 setProducts(data['hydra:member']);
@@ -20,7 +22,7 @@ export default function ListProducts() {
     }, []);
 
     const handleDelete = (productId) => {
-        const url = 'http://api-verdularia' + productId;
+        const url = 'https://api-verdularia.08edgar.daw.iesevalorpego.es' + productId;
         fetch(url, {
             method: 'DELETE',
             headers: {
@@ -33,9 +35,7 @@ export default function ListProducts() {
     }
 
     const handleEdit = (productToUpdate) => {
-        const url = 'http://api-verdularia' + productToUpdate['@id'];
-        console.log(url);
-        console.log(productToUpdate);
+        const url = 'https://api-verdularia.08edgar.daw.iesevalorpego.es' + productToUpdate['@id'];
         const data = {
             name: productToUpdate.name,
             description: productToUpdate.description,
@@ -51,13 +51,17 @@ export default function ListProducts() {
             body: JSON.stringify(data),
         })
 
+
         const objetoEncontrado = products.find(objeto => objeto['@id'] === productToUpdate['@id']);
 
         if (objetoEncontrado) {
-          objetoEncontrado = productToUpdate
-          setProducts([...products]);
+            console.log(objetoEncontrado)
+            const newProducts = products.filter((product) => product['@id'] !== productToUpdate['@id']);
+            console.log(newProducts)
+            newProducts.push(productToUpdate);
+            setProducts(newProducts);
         }
-      };
+    };
 
 
     return (

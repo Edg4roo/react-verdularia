@@ -6,11 +6,14 @@ import Login from './components/login';
 import Home from './components/home';
 import NewProduct from './components/newProduct';
 import ListProducts from './components/listProducts';
+import UserContextProvider from './context/userContext';
 
 function App() {
   return (
     <div className="App">
-      <Header></Header>
+      <UserContextProvider>
+        <Header></Header>
+      </UserContextProvider>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<Login />}></Route>

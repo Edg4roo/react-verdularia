@@ -7,8 +7,12 @@ import { useState, useEffect } from 'react';
 export default function NewProduct() {
 
     const newProductSchema = Yup.object().shape({
-        name: Yup.string().required('El nombre es obligatorio'),
-        description: Yup.string().required('La descripción es obligatoria'),
+        name: Yup.string()
+            .required('El nombre es obligatorio')
+            .min(5, 'El nombre debe tener al menos 5 caracteres'),
+        description: Yup.string()
+            .required('La descripción es obligatoria')
+            .min(10, 'La descripción debe tener al menos 10 caracteres'),
         price: Yup.number()
             .typeError('El precio debe ser un número')
             .required('El precio es obligatorio')
@@ -25,7 +29,7 @@ export default function NewProduct() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch("http://api-verdularia/api/categories", {
+                const response = await fetch("https://api-verdularia.08edgar.daw.iesevalorpego.es/api/categories", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -64,7 +68,7 @@ export default function NewProduct() {
 
             console.log(data);
 
-            fetch('http://api-verdularia/api/products', {
+            fetch('https://api-verdularia.08edgar.daw.iesevalorpego.es/api/products', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
