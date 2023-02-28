@@ -12,7 +12,7 @@ export default function NewProduct() {
             .min(5, 'El nombre debe tener al menos 5 caracteres'),
         description: Yup.string()
             .required('La descripción es obligatoria')
-            .min(10, 'La descripción puede tener como mínimo 255 caracteres')
+            .min(10, 'La descripción puede tener como mínimo 10 caracteres')
             .max(255, 'La descripción puede tener como máximo 255 caracteres'),
         price: Yup.number()
             .typeError('El precio debe ser un número')
