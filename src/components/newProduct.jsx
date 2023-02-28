@@ -2,8 +2,8 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+
 export default function NewProduct() {
 
     const newProductSchema = Yup.object().shape({
@@ -50,8 +50,6 @@ export default function NewProduct() {
         fetchData();
     }, []);
 
-    const navigate = useNavigate();
-
     const [selectedCategory, setSelectedCategory] = useState('');
 
     const handleChange = event => {
@@ -81,7 +79,7 @@ export default function NewProduct() {
             })
                 .then(response => response.json())
                 .then(response => {
-                    if (response['hydra:title'] != undefined) {
+                    if (response['hydra:title'] !== undefined) {
                         setMessage({ message: response['hydra:description'], type: 'error' });                 
                     }
                     else {

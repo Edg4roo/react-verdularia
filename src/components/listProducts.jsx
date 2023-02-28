@@ -8,8 +8,6 @@ export default function ListProducts() {
 
     const [products, setProducts] = useState([]);
 
-    const [error, setError] = useState(null);
-
     useEffect(() => {
         fetch('https://api-verdularia.08edgar.daw.iesevalorpego.es/api/products')
             .then(response => response.json())

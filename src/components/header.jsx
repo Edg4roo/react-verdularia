@@ -58,7 +58,7 @@ export default function Header() {
                                     {isLogged === true ?
                                         <li className="nav-item mx-4 d-flex align-items-center">
                                             <div className="dropdown">
-                                                <a className="dropdown-toggle text-decoration-none" type="button"
+                                                <a href=" " className="dropdown-toggle text-decoration-none" type="button"
                                                     id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Gestiones
                                                 </a>
@@ -72,7 +72,7 @@ export default function Header() {
                                         : ''}
                                     <li className="nav-item mx-4 d-flex align-items-center">
                                         <div className="dropdown">
-                                            <a className="dropdown-toggle text-decoration-none" type="button"
+                                            <a href=" " className="dropdown-toggle text-decoration-none" type="button"
                                                 id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                                 Conócenos
                                             </a>
