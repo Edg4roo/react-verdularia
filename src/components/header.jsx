@@ -12,7 +12,6 @@ export default function Header() {
 
     const username = useContext(UserContext);
 
-    console.log(username);
     return (
         <header>
             <div className="container bg_darkbrown">
@@ -57,20 +56,20 @@ export default function Header() {
                                         <Link className="nav-link" to='/'>Comprar</Link>
                                     </li>
                                     {isLogged === true ?
-                                    <li className="nav-item mx-4 d-flex align-items-center">
-                                        <div className="dropdown">
-                                            <a className="dropdown-toggle text-decoration-none" type="button"
-                                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Gestiones
-                                            </a>
-                                            
+                                        <li className="nav-item mx-4 d-flex align-items-center">
+                                            <div className="dropdown">
+                                                <a className="dropdown-toggle text-decoration-none" type="button"
+                                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Gestiones
+                                                </a>
+
                                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <li><Link className="dropdown-item" to='/list_products'>Todos los productos</Link></li>
                                                     <li><Link className="dropdown-item" to='/new_product'>Nuevo producto</Link></li>
-                                                </ul> 
-                                        </div>
-                                    </li>
-                                    :''}
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        : ''}
                                     <li className="nav-item mx-4 d-flex align-items-center">
                                         <div className="dropdown">
                                             <a className="dropdown-toggle text-decoration-none" type="button"

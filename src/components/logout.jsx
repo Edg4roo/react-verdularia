@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 
@@ -13,6 +13,7 @@ const Logout = () => {
 
     // Cambiamos el contexto de isLogged a false
     userContext.setIsLogged(false);
+    userContext.setUser({username:''});
   
     navigate('/');
 };
