@@ -8,10 +8,8 @@ const Logout = () => {
 
     const userContext = useContext(UserContext);
 
-    // Borramos el token del local storage
     localStorage.removeItem('token');
 
-    // Cambiamos el contexto de isLogged a false
     userContext.setIsLogged(false);
     userContext.setUser({username:''});
   
