@@ -3,8 +3,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
+import { UserContext } from '../context/userContext';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function NewProduct() {
+
+    const { isLogged } = useContext(UserContext);
+
+    const navigate = useNavigate();
+
+    if (isLogged === false) {
+        navigate('/');
+    }
 
     const newProductSchema = Yup.object().shape({
         name: Yup.string()

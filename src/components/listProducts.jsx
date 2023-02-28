@@ -3,8 +3,19 @@ import { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import DeleteButton from './deleteButton';
 import EditButton from './editButton';
+import { UserContext } from '../context/userContext';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ListProducts() {
+
+    const { isLogged } = useContext(UserContext);
+    
+    const navigate = useNavigate();
+
+    if (isLogged === false) {
+        navigate('/');
+    }
 
     const [products, setProducts] = useState([]);
 
