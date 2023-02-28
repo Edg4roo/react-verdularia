@@ -43,6 +43,8 @@ export default function Login() {
                     if (response.token != null) {
                         localStorage.setItem('token', response.token);
                         userContext.setIsLogged(true);
+                        console.log(response.data.username);
+                        userContext.setUser({username:response.data.username});
                         navigate('/');
                     } else {
                         setError(response.message);

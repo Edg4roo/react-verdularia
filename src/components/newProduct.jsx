@@ -12,7 +12,8 @@ export default function NewProduct() {
             .min(5, 'El nombre debe tener al menos 5 caracteres'),
         description: Yup.string()
             .required('La descripción es obligatoria')
-            .min(10, 'La descripción debe tener al menos 10 caracteres'),
+            .min(10, 'La descripción puede tener como mínimo 255 caracteres')
+            .max(255, 'La descripción puede tener como máximo 255 caracteres'),
         price: Yup.number()
             .typeError('El precio debe ser un número')
             .required('El precio es obligatorio')
@@ -25,6 +26,10 @@ export default function NewProduct() {
 
     const [categories, setCategories] = useState([]);
 
+    const [message, setMessage] = useState({
+        message: '',
+        type: ''
+      });
 
     useEffect(() => {
         async function fetchData() {
@@ -66,8 +71,6 @@ export default function NewProduct() {
                 category: selectedCategory
             }
 
-            console.log(data);
-
             fetch('https://api-verdularia.08edgar.daw.iesevalorpego.es/api/products', {
                 method: 'POST',
                 headers: {
@@ -77,9 +80,16 @@ export default function NewProduct() {
                 body: JSON.stringify(data),
             })
                 .then(response => response.json())
-                .then(function (response) {
-                    console.log(response);
+                .then(response => {
+                    if (response['hydra:title'] != undefined) {
+                        setMessage({ message: response['hydra:description'], type: 'error' });                 
+                    }
+                    else {
+                        setMessage({ message: 'Producto creado con éxito', type: 'success'});
+                    }
                 })
+
+
         },
         validationSchema: newProductSchema
     })
@@ -88,6 +98,7 @@ export default function NewProduct() {
     return (
         <div className='contanier-fluid'>
             <h1>Nuevo producto</h1>
+            {message.message && <p className={message.type === 'error' ? 'text-danger' : 'text-success'}>{message.message}</p>}
             <form onSubmit={formik.handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Nombre</label>

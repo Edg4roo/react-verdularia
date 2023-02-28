@@ -6,6 +6,10 @@ export const UserContext = createContext({});
 export default function UserContextProvider({ children }) {
     const [isLogged, setIsLogged] = useState(false);
 
+    const [user, setUser] = useState({
+        username: '',
+        id: ''
+    });
 
     fetch("https://api-verdularia.08edgar.daw.iesevalorpego.es/api/categories", {
         method: "GET",
@@ -16,7 +20,7 @@ export default function UserContextProvider({ children }) {
     })
         .then(response => response.json())
         .then(function (response) {
-            if(response.code === undefined) {
+            if (response.code === undefined) {
                 setIsLogged(true);
             } else {
                 setIsLogged(false);
@@ -27,7 +31,7 @@ export default function UserContextProvider({ children }) {
 
 
     return (
-        <UserContext.Provider value={{ isLogged, setIsLogged }}>
+        <UserContext.Provider value={{ isLogged, setIsLogged, user, setUser }}>
             {children}
         </UserContext.Provider>
     )

@@ -10,6 +10,9 @@ export default function Header() {
 
     const { isLogged } = useContext(UserContext);
 
+    const username = useContext(UserContext);
+
+    console.log(username);
     return (
         <header>
             <div className="container bg_darkbrown">
@@ -30,7 +33,7 @@ export default function Header() {
                     </div>
                     <div className="col-4">
                         <div className="d-flex h-100 align-items-center justify-content-end justify-content-md-center">
-                            {isLogged === true ? <h5 className="text-primary">nombre usuario</h5> : ''}
+                            {isLogged === true ? <h5 className="text-primary">{username.user.username}</h5> : ''}
                             <div className="dropdown d-flex">
                                 <button className="dropdown-toggle btn p-0 m-0 d-flex position-relative" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
